@@ -1,9 +1,11 @@
 <?php
 session_start();
 // Test that the authentication session variable exists
+require("poiDAO.php");
 if ( !isset ($_SESSION["gatekeeper"]))
 {
     echo "You're not logged in. Go away!";
+	echo "<a href=\"https://edward2.solent.ac.uk/~assign223/login.html\">Login page </a></br>";
 }
 else
 {
@@ -12,26 +14,24 @@ else
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Adding</title>
+<title>PHP Test</title>
 </head>
 <body>
 
 <?php
-$nm = $_POST["POIname"];
-$type = $_POST["POItype"];
-$desc = $_POST["POIdesc"];
+$id = $_GET["id"];
+
 try
 {
 	$conn = new PDO ("mysql:host=localhost;dbname=assign223;", "assign223", "phaemies");
 
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-	$statement = $conn->prepare("INSERT INTO pointsofinterest(name,type,description,username) VALUES (:nm,:type,:desc,:user)");
-	$statement->execute([":nm"=>$nm, ":type"=>$type, ":desc"=>$desc, ":user"=>$un]);			//**********************More extensive adding**************************
 	
-	echo "<p>Point of interest added successfully! Thanks $un</p>";
+	$dao = new poiDAO($conn, "pointsofinterest");
+	
+	$dao->recommendPoi($id);
+	
 }
-// Catch any exceptions (errors) thrown from the 'try' block
 catch(PDOException $e) 
 {
     echo "Error: $e";

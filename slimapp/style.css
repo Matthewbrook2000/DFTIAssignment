@@ -1,0 +1,25 @@
+html {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: navy;
+  margin-left: 20px;
+  text-align: center; 
+}
+
+fieldset {
+  display: block;
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-top: 0em;
+  padding-bottom: 0em;
+  padding-left: 0em;
+  padding-right: 0em;
+  border: 0px;
+}
+

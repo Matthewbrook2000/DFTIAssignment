@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>HitTastic! Login</title>
+<title>Points of interest Login</title>
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-<h1>Log in to HitTastic!</h1>
-<form method="post" action="login.php">
+<h1>Log in!</h1>
+<form method="post" action="login-attempt">
 <label for="username">Username:</label>
 <input name="username" id="username"/>
 <br/>
