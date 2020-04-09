@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 require("poi_reviewDAO.php");
 if ( !isset ($_SESSION["gatekeeper"]))
 {
@@ -19,8 +18,9 @@ else
 <body>
 
 <?php
-$rev = $_POST["rev"];
-$id = $_POST["id"];
+$rev = htmlentities($_POST["rev"]);
+$id = htmlentities($_POST["id"]);
+$reg = htmlentities($_POST["reg"]);
 try
 {
 	$conn = new PDO ("mysql:host=localhost;dbname=assign223;", "assign223", "phaemies");
@@ -29,7 +29,7 @@ try
 
 	$dao = new poi_reviewDAO($conn, "poi_reviews");
 	
-	$dao->createPoiReview($id, $rev);
+	$dao->createPoiReview($id, $rev, $reg);
 	
 }
 catch(PDOException $e) 

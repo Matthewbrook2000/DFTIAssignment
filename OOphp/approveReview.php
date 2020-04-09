@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 require("poi_reviewDAO.php");
 if ( !isset ($_SESSION["gatekeeper"]))
 {
@@ -20,7 +19,7 @@ else
 <body>
 <h1>Points of interest</h1>
 <?php
-$id = $_GET["id"];
+$id = htmlentities($_GET["id"]);
 
 try
 {

@@ -9,7 +9,7 @@ class poi_reviewDAO {
 		$this->table = $t;
 	}
 	
-	public function showPoiReview($id){
+	public function showPoiReview($id, $reg){
 			
 		$statement = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE poi_id = :id");
 		$statement->execute([":id"=>$id]);
@@ -27,11 +27,10 @@ class poi_reviewDAO {
 				}
 			}
 		}
-		
-		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/index.php\">Return home </a></br>";
+		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/search.php?reg=$reg\">Return home </a></br>";
 	}
 	
-	public function showPoiReviewAdmin($id){
+	public function showPoiReviewAdmin($id, $reg){
 			
 		$statement = $this->conn->prepare("SELECT * FROM " . $this->table . " WHERE poi_id = :id");
 		$statement->execute([":id"=>$id]);
@@ -59,19 +58,20 @@ class poi_reviewDAO {
 		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/index.php\">Return home </a></br>";
 	}
 	
-	public function createPoiReview($id, $rev){
+	public function createPoiReview($id, $rev, $reg){
 		$statement = $this->conn->prepare("INSERT INTO " . $this->table . "(poi_id,review,approved) VALUES (:poiid,:rev,0)");
 		$statement->execute([":poiid"=>$id, ":rev"=>$rev]);
 		
-		echo "<p>review added successfully</p>";
+		echo "<p>review added successfully</p></br>";
+		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/search.php?reg=$reg\">Return home </a></br>";
 	}
 	
-	public function approvePoiReview($id){
+	public function approvePoiReview($id, $reg){
 		$statement = $this->conn->prepare("UPDATE " . $this->table . " SET approved=1 WHERE id = :id");
 		$statement->execute([":id"=>$id]);
 		
 		echo"Review Approved";
-		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/index.php\">Return home </a></br>";
+		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/search.php?reg=$reg\">Return home </a></br>";
 	}
 
 }

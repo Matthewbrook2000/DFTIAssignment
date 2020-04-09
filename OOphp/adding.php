@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 require("poiDAO.php");
 if ( !isset ($_SESSION["gatekeeper"]))
 {
@@ -19,20 +18,27 @@ else
 <body>
 
 <?php
-$nm = $_POST["POIname"];
-$type = $_POST["POItype"];
-$desc = $_POST["POIdesc"];
+$nm = htmlentities($_POST["POIname"]);
+$type = htmlentities($_POST["POItype"]);
+$desc = htmlentities($_POST["POIdesc"]);
+$reg = htmlentities($_POST["POIreg"]);
 try
 {
+	if(!ctype_alnum($reg))
+	{
+		echo "ERROR: Input contains characters other than letters and numbers.";
+	} 
+	else {
 	$conn = new PDO ("mysql:host=localhost;dbname=assign223;", "assign223", "phaemies");
 
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 	$dao = new poiDAO($conn, "pointsofinterest");
 	
-	$poiObj = new Poi(" ", $nm, $type, " ", " ", " ", " ", $desc, " ", $un);
+	$poiObj = new Poi(" ", $nm, $type, " ", $reg, " ", " ", $desc, " ", $un);
 	
 	$dao->addPoi($poiObj);
+	}
 }
 catch(PDOException $e) 
 {

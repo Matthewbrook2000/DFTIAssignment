@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 if ( !isset ($_SESSION["gatekeeper"]))
 {
     echo "You're not logged in. Go away!";
@@ -30,6 +29,8 @@ $token = bin2hex(random_bytes(32));
 <input name="POIname" /></br>
 <label>Enter a type:</label>
 <input name="POItype" /></br>
+<label>Enter a region:</label>
+<input name="POIreg" /></br>
 <label>Enter a description:</label>
 <input name="POIdesc" /></br>
 <input type="submit" value="Go!" />

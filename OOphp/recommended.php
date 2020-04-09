@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 require("poiDAO.php");
 if ( !isset ($_SESSION["gatekeeper"]))
 {
@@ -19,7 +18,8 @@ else
 <body>
 
 <?php
-$id = $_GET["id"];
+$id = htmlentities($_GET["id"]);
+$reg = htmlentities($_GET["reg"]);
 
 try
 {
@@ -29,7 +29,7 @@ try
 	
 	$dao = new poiDAO($conn, "pointsofinterest");
 	
-	$dao->recommendPoi($id);
+	$dao->recommendPoi($id, $reg);
 	
 }
 catch(PDOException $e) 

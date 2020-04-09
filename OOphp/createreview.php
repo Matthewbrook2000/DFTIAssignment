@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 if ( !isset ($_SESSION["gatekeeper"]))
 {
     echo "You're not logged in. Go away!";
@@ -12,7 +11,8 @@ else
 ?>
 
 <?php
-	$id = $_GET["id"];
+	$id = htmlentities($_GET["id"]);
+	$reg = htmlentities($_GET["reg"]);
 ?>
 
 <html>
@@ -27,6 +27,7 @@ else
 			<label>Enter review:</label>
 			<input name="rev" />
 			<input type='hidden' name='id' value='<?php echo $id;?>'/>
+			<input type='hidden' name='reg' value='<?php echo $reg;?>'/>
 			<input type="submit" value="Done" />
 			</fieldset>
 		</form>

@@ -10,10 +10,11 @@ class poiDAO {
 	}
 	
 	public function addPoi(Poi $poiObj){ 
-		$statement = $this->conn->prepare("INSERT INTO " . $this->table . " (name,type,description,username) VALUES (:nm,:type,:desc,:user)");
-		$statement->execute([":nm"=> $poiObj->getName(), ":type"=> $poiObj->getPOItype(), ":desc"=> $poiObj->getDescription(), ":user"=> $poiObj->getUsername()]);			
+		$statement = $this->conn->prepare("INSERT INTO " . $this->table . " (name,type,region,description,username) VALUES (:nm,:type,:reg,:desc,:user)");
+		$statement->execute([":nm"=> $poiObj->getName(), ":type"=> $poiObj->getPOItype(), ":reg"=> $poiObj->getPOItype(), ":desc"=> $poiObj->getDescription(), ":user"=> $poiObj->getUsername()]);			
 	
-		echo "<p>Point of interest added successfully! Thanks $un</p>";
+		echo "<p>Point of interest added successfully! Thanks $un</p></br>";
+		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/index.php\">Return home </a></br>";
 	}
 	
 	public function searchPoi($reg){
@@ -31,12 +32,12 @@ class poiDAO {
 		}
 	}
 	
-	public function recommendPoi($id){
+	public function recommendPoi($id, $reg){
 		$statement = $this->conn->prepare("UPDATE " . $this->table . " SET recommended=recommended+1 WHERE id = :id");
 		$statement->execute([":id"=>$id]);
 		
-		echo"Recommendation complete";
-		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/index.php\">Return home </a></br>";
+		echo"Recommendation complete </br>";
+		echo "<a href=\"https://edward2.solent.ac.uk/~assign223/search.php?reg=$reg\">Return home </a></br>";
 	}
 	
 }

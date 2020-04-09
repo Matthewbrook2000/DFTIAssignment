@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Test that the authentication session variable exists
 if ( !isset ($_SESSION["gatekeeper"]))
 {
     echo "You're not logged in. Go away!";
@@ -17,12 +16,7 @@ else
 <?php
 include("functions.php");
 writeCSSLink();
-$token = bin2hex(random_bytes(32)); //************************************
-// go through and remove all un needed comments
-// check what that token thing is
-// add a region to adding a poi
-// after return make it return back to the same page
-// after entering new review add a return home button
+$token = bin2hex(random_bytes(32)); 
 
 ?>
 <title>Points of interest</title>
@@ -42,8 +36,8 @@ $token = bin2hex(random_bytes(32)); //************************************
 <input type="submit" value="Go!" />
 </fieldset>
 </form>
-<?php		//***************************************************************
-links(); //*****Remove links and use the session token with a button********
+<?php		
+links(); 
 ?>		
 </body>
 </html>

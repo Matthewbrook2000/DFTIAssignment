@@ -52,9 +52,10 @@ class Poi {
 	public function display() {
         echo "Name: " . $this->username . " <br/>Type: " . $this->POItype . "<br />Country: " . $this->country . "<br/>Region: " . $this->region . "<br/>Coordinates: " . $this->lon . " Long. " . $this->lat . " Lat.<br/>Description: " . $this->description . "<br/>Recommended: " . $this->recommended . "<br/>";
 		$id = $this->id;
-		echo "<a href='recommended.php?id=$id'>Recommended this location</a><br/>";
-		echo "<a href='showreview.php?id=$id'>View all reviews</a><br/>";
-		echo "<a href='createreview.php?id=$id'>Create review</a><br/>";
+		$reg = $this->region;
+		echo "<a href='recommended.php?id=$id&reg=$reg'>Recommended this location</a><br/>";
+		echo "<a href='showreview.php?id=$id&reg=$reg'>View all reviews</a><br/>";
+		echo "<a href='createreview.php?id=$id&reg=$reg'>Create review</a><br/>";
 
 		echo "</p>";
 	}
